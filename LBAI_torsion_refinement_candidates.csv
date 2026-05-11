@@ -1,0 +1,8 @@
+scan_torsion,central_bond,central_bond_atom_names,central_bond_atom_types,central_bond_elements,outer_atom_names,outer_atom_elements,current_dihedral_deg,itp_funct,itp_phi0_deg,itp_cp,itp_mult,score,raw_itp_line
+5 7 12 13,7 12,C34-C29,CAro-CAro,C-C,C50 ... N6,C ... N,-166.192,1,180.0,41.8,2,1401,    5    7   12   13    1    180.00    41.80    2
+13 14 29 30,14 29,C26-N2,CAro-NPri,C-N,N6 ... C17,N ... C,7.785,1,180.0,33.5,2,1393,   13   14   29   30    1    180.00    33.50    2
+17 16 18 19,16 18,C30-C33,CAro-CAro,C-C,N7 ... C45,N ... C,-166.76,1,180.0,41.8,2,1401,   17   16   18   19    1    180.00    41.80    2
+45 44 49 50,44 49,C23-C11,CAro-CAro,C-C,C22 ... C10,C ... C,-139.616,1,180.0,41.8,2,1401,   45   44   49   50    1    180.00    41.80    2
+64 65 69 70,65 69,N1-C25,NPri-CAro,N-C,C5 ... N3,C ... N,7.969,1,180.0,33.5,2,1393,   64   65   69   70    1    180.00    33.50    2
+70 71 72 73,71 72,C27-C31,CAro-CAro,C-C,N3 ... C35,N ... C,-165.984,1,180.0,41.8,2,1401,   70   71   72   73    1    180.00    41.80    2
+83 84 86 87,84 86,C28-C32,CAro-CAro,C-C,N4 ... C40,N ... C,-166.853,1,180.0,41.8,2,1401,   83   84   86   87    1    180.00    41.80    2

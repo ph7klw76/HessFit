@@ -1,0 +1,12 @@
+ITP atoms: 96
+XYZ atoms: 96
+Element-order mismatches: 0
+Atom order matches by element sequence.
+
+Meta:
+  ring_atom_count: 62
+  ring_edge_count: 66
+  bridge_central_bond_count: 7
+  proper_dihedral_count: 73
+  candidate_count: 7
+  recommended_count: 7

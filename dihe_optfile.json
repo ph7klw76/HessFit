@@ -1,0 +1,55 @@
+{
+  "files": {
+    "file_xyz": "LBAI.xyz",
+    "topol": "dihedrals/topol.txt",
+    "atom2type": "dihedrals/type_charge.txt",
+    "force_file": "dihedrals/ff_string.txt"
+  },
+  "nprocs": 16,
+  "method": "B3LYP/6-31G*",
+  "mem": "48GB",
+  "scan_torsions": [
+    [
+      5,
+      7,
+      12,
+      13
+    ],
+    [
+      13,
+      14,
+      29,
+      30
+    ],
+    [
+      17,
+      16,
+      18,
+      19
+    ],
+    [
+      45,
+      44,
+      49,
+      50
+    ],
+    [
+      64,
+      65,
+      69,
+      70
+    ],
+    [
+      70,
+      71,
+      72,
+      73
+    ],
+    [
+      83,
+      84,
+      86,
+      87
+    ]
+  ]
+}
