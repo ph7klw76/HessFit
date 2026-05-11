@@ -92,7 +92,7 @@ Phase 19  Run MM Gaussian jobs
 Phase 20  Extract MM scan energies and verify 11 points per scan
 Phase 21  Diagnose scan completeness and repair failed scans
 Phase 22  Assemble final ./data directory
-Phase 23  Run update_itp_trustable.py in strict mode
+Phase 23  Run update_itp_trustable.py in strict mode  https://github.com/ph7klw76/HessFittoGromacsitp
 Phase 24  Validate final .itp with GROMACS
 ```
 
