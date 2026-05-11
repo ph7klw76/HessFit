@@ -1,6 +1,6 @@
 # Gaussian 09 Revision C.01 + HessFit + TeraChem RESP User Manual
 
-## Ultra-rigorous end-to-end workflow for producing a trustworthy HessFit/QM-MM-refined GROMACS `.itp`
+## End-to-end workflow for producing a trustworthy HessFit/QM-MM-refined GROMACS `.itp`
 
 **Target molecule in the supplied scripts:** `LBAI`  
 **Gaussian target version:** Gaussian 09, Revision C.01  
@@ -45,7 +45,7 @@ The most important correction is this:
 
 ---
 
-# 1. Corrected role of every uploaded `a*.sh` script
+# 1. Role of every `a*.sh` script
 
 | Script | Correct role | Use status | Critical notes |
 |---|---|---:|---|
@@ -64,7 +64,7 @@ The most important correction is this:
 
 ---
 
-# 2. Absolutely corrected sequential flow
+# 2. Sequential flow
 
 The safest full sequence is:
 
