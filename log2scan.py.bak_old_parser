@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+
+import argparse
+import re
+from pathlib import Path
+
+HARTREE_TO_KCAL = 627.5094740631
+
+def parse_args():
+    p = argparse.ArgumentParser()
+    p.add_argument("-t", "--type", dest="ftype", default="qm")
+    p.add_argument("-f", "--file", dest="file_log", required=True)
+    p.add_argument("-o", "--output", dest="output", required=True)
+    return p.parse_args()
+
+def read_lines(path):
+    return Path(path).read_text(errors="replace").splitlines()
+
+def find_scan_coordinate(lines):
+    """
+    Find the Gaussian internal coordinate marked as Scan.
+    Example:
+    ! D21   D(5,7,12,13)  -166.1919  Scan !
+    """
+    pat = re.compile(
+        r"!\s*(D\d+)\s+(D\([^)]*\))\s+"
+        r"([-+]?\d+(?:\.\d*)?)\s+Scan"
+    )
+
+    for line in lines:
+        m = pat.search(line)
+        if m:
+            return m.group(1), m.group(2)
+
+    raise RuntimeError("Could not find scanned dihedral line containing 'Scan'.")
+
+def extract_completed_scan_points(lines, scan_label, scan_def):
+    """
+    Extract one point per completed optimization:
+    - last SCF energy before 'Optimization completed.'
+    - optimized value of the scanned coordinate from the following parameter table
+    """
+    energy_pat = re.compile(r"SCF Done:\s+E\([^)]+\)\s+=\s+([-+]?\d+\.\d+)")
+    coord_pat = re.compile(
+        r"!\s*" + re.escape(scan_label) + r"\s+"
+        + re.escape(scan_def) + r"\s+([-+]?\d+(?:\.\d*)?)"
+    )
+
+    records = []
+    last_energy = None
+    stopped_count = 0
+
+    for i, line in enumerate(lines):
+        em = energy_pat.search(line)
+        if em:
+            last_energy = float(em.group(1))
+
+        if "Optimization stopped." in line:
+            stopped_count += 1
+
+        if "Optimization completed." in line:
+            angle = None
+
+            # The optimized parameter table follows shortly after this line.
+            for j in range(i, min(len(lines), i + 1000)):
+                cm = coord_pat.search(lines[j])
+                if cm:
+                    angle = float(cm.group(1))
+                    break
+
+            if angle is not None and last_energy is not None:
+                records.append((angle, last_energy))
+
+    if not records:
+        raise RuntimeError(
+            "No completed scan points were extracted. "
+            "Check whether the Gaussian log contains 'Optimization completed.' sections."
+        )
+
+    return records, stopped_count
+
+def write_relative_kcal(records, output):
+    emin = min(e for _, e in records)
+
+    with open(output, "w") as f:
+        for angle, energy in records:
+            rel = (energy - emin) * HARTREE_TO_KCAL
+            f.write(f"{angle:.8f},{rel:.10f}\n")
+
+def main():
+    args = parse_args()
+
+    if args.ftype.lower() != "qm":
+        raise RuntimeError("This patched log2scan.py handles QM logs only. Use get_mm_energy.py for MM logs.")
+
+    lines = read_lines(args.file_log)
+
+    if not any("Normal termination" in line for line in lines):
+        raise RuntimeError(f"{args.file_log} does not contain Normal termination.")
+
+    scan_label, scan_def = find_scan_coordinate(lines)
+    records, stopped_count = extract_completed_scan_points(lines, scan_label, scan_def)
+
+    write_relative_kcal(records, args.output)
+
+    print(f"Scanned coordinate: {scan_label} {scan_def}")
+    print(f"Wrote: {args.output}")
+    print(f"Completed scan points extracted: {len(records)}")
+
+    if stopped_count:
+        print(f"WARNING: Gaussian reported 'Optimization stopped.' {stopped_count} time(s).")
+        print("WARNING: For a cleaner torsion scan, rerun with a larger Opt maxcycle.")
+
+if __name__ == "__main__":
+    main()
