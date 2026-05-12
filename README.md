@@ -55,6 +55,7 @@ The most important correction is this:
 | `a4.sh` | Fit HessFit harmonic parameters | Required | Runs `hessfit_harmonic.py optfile.json --version g09 --at scratch`. |
 | `a5.sh` | Validate generated HessFit Gaussian input | Strongly recommended | Runs `hessfit4gau.gjf` and formats `hessfit4gau.chk`. |
 | `a6.sh` | Torsion setup and launcher | Use carefully | Converts PDB to XYZ, recommends torsions, updates `dihe_optfile.json`, then calls `hessfit_dihes.py`. It is not just a preparation script. |
+| `a7.sh` | "$HESSPY" "$HESSDIR/hessfit_dihes.py" dihe_optfile.json | Required| A complete QM scan file generator. |
 | `a7-2.sh` | Partial QM rerun for scans 4, 5, and 6 | Recovery only | Not a complete QM scan runner. |
 | `a8.sh` | Extract QM scan energies | Required after QM logs exist | Loops over `*_qm.log` and writes `*_qm_scan_energy.csv` for normally terminated logs. |
 | `a9.sh` | Duplicate of `a8.sh` | Do not use both | Keep one copy only. |
