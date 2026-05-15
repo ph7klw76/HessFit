@@ -62,7 +62,7 @@ The most important correction is this:
 | `a10.sh` | Hardcoded serial MM Gaussian execution | Legacy or recovery | Explicitly runs many `N_mm_angle.gjf` files. It is not flexible but is transparent. |
 | `a10-1.sh` | Partial scan-3 MM rerun | Recovery only | Contains `grm`, which is probably site-specific or a typo. Use `rm` unless `grm` is known on your cluster. |
 | `a11.sh` | Extract scan-3 MM energies only | Recovery only | Extracts only `3_mm_scan_energy.csv`; not a complete all-scan extraction script. |
-| 'a12.sh'| run update_itp_trustable.py| | |
+| 'a12.sh'| run update_itp_full_pipeline.py| | |
 
 ---
 
