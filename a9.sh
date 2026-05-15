@@ -20,12 +20,4 @@ export PATH="$HESSDIR:$PATH"
 
 cd /home/user/woon/hessfit_work/LBAI
 
-for f in *_qm.log; do
-    if grep -q "Normal termination" "$f"; then
-        base="${f%.log}"
-        echo "Processing $f"
-        "$HESSPY" "$HESSDIR/log2scan.py" -t qm -f "$f" -o "${base}_scan_energy.csv"
-    else
-        echo "Skipping failed log: $f"
-    fi
-done
+"$HESSPY" "$HESSDIR/hessfit_dihes.py" dihe_optfile.json
