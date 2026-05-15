@@ -58,10 +58,11 @@ The most important correction is this:
 | `a7.sh` | "$HESSPY" "$HESSDIR/hessfit_dihes.py" dihe_optfile.json | Required| A complete QM scan file generator. |
 | `a7-2.sh` | Partial QM rerun for scans 4, 5, and 6 | Recovery only | Not a complete QM scan runner. |
 | `a8.sh` | Extract QM scan energies | Required after QM logs exist | Loops over `*_qm.log` and writes `*_qm_scan_energy.csv` for normally terminated logs. |
-| `a9.sh` | Duplicate of `a8.sh` | Do not use both | Keep one copy only. |
+| `a9.sh` | Generate MM Gaussian File |  |  |
 | `a10.sh` | Hardcoded serial MM Gaussian execution | Legacy or recovery | Explicitly runs many `N_mm_angle.gjf` files. It is not flexible but is transparent. |
 | `a10-1.sh` | Partial scan-3 MM rerun | Recovery only | Contains `grm`, which is probably site-specific or a typo. Use `rm` unless `grm` is known on your cluster. |
 | `a11.sh` | Extract scan-3 MM energies only | Recovery only | Extracts only `3_mm_scan_energy.csv`; not a complete all-scan extraction script. |
+| 'a12.sh'| run update_itp_trustable.py| | |
 
 ---
 
