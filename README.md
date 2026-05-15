@@ -813,9 +813,8 @@ This README does **not** claim:
 
 ---
 
-# 15. Suggested repository layout
+# 15. repository layout
 
-A publication-ready layout could separate code, job scripts, examples, and generated outputs:
 
 ```text
 .
@@ -1108,34 +1107,8 @@ The workflow is scientifically useful because it keeps intermediate files and de
 
 ---
 
-# 22. Recommended additions for publication readiness
 
-The repository would become substantially stronger for publication and external reproduction with:
-
-1. A committed and documented `update_itp_full_pipeline.py`.
-2. A single canonical LBAI-only naming convention across every shell script and produced output.
-3. A project-local environment file such as:
-   ```text
-   environment.yml
-   ```
-4. A portable configuration file replacing absolute user paths.
-5. A single canonical QM extraction script instead of duplicate `a8.sh`/`a9.sh`.
-6. A generalized MM extraction script covering all scans, not only scan 3.
-7. A normalized scan-recovery helper replacing or clarifying `a10-1.sh`.
-8. A stricter optional final-update profile without:
-   ```text
-   --allow-incomplete
-   --allow-high-rmse
-   ```
-9. A small table documenting:
-   - expected input files,
-   - expected output files,
-   - exact dependency order for each stage.
-10. Example validation plots or comparison tables, clearly separated from workflow execution scripts.
-
----
-
-# 23. Limitations
+# 22. Limitations
 
 - The workflow is cluster-specific as written.
 - Absolute user paths appear in several scripts.
@@ -1149,7 +1122,7 @@ The repository would become substantially stronger for publication and external 
 
 ---
 
-# 24. Acknowledgments
+# 23. Acknowledgments
 
 This repository organizes a research workflow around:
 
